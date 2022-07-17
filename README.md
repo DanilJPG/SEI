@@ -3,12 +3,12 @@ Official documentation: https://docs.seinetwork.io/nodes-and-validators/seinami-
 
 Chain explorer: https://sei.explorers.guru/
 
-Minimum Hardware Requirements
+##Minimum Hardware Requirements
 3x CPUs; the faster clock speed the better
 4GB RAM
 80GB Disk
 Permanent Internet connection (traffic will be minimal during testnet; 10Mbps will be plenty - for production at least 100Mbps is expected)
-Recommended Hardware Requirements
+##Recommended Hardware Requirements
 4x CPUs; the faster clock speed the better
 8GB RAM
 512GB of storage (SSD or NVME)
@@ -17,14 +17,14 @@ Filling out the first form after installing the validator: https://docs.google.c
 
 The form after the assignment: https://docs.google.com/forms/d/1qxpIL-ATe1HMX87w1P7BjMqpjXExlKyo1_btEJi00JM/
 
-Set up your SEI full node
+##Set up your SEI full node
 
-Updating repositories
+###Updating repositories
 `sudo apt update && sudo apt upgrade -y`
-Installing the necessary utilities
+###Installing the necessary utilities
 sudo apt install curl build-essential git wget jq make gcc tmux htop nvme-cli pkg-config libssl-dev libleveldb-dev tar clang bsdmainutils ncdu unzip libleveldb-dev -y
 
-Setting up Go WITH ONE COMMAND
+###Setting up Go WITH ONE COMMAND
 ```
 ver="1.18.1" && \ 
 wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz" && \ 
@@ -35,23 +35,23 @@ echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile &
 source $HOME/.bash_profile && \ 
 go version
 ```
-Installing the binary
+###Installing the binary
 ```
 git clone https://github.com/sei-protocol/sei-chain.git && cd sei-chain
 git checkout 1.0.6beta
 make install
 ```
-seid version --long | head 
+`seid version --long | head`
 ### version 1.0.6beta 
 ### commit: e3958ff9cc3fa00a12b0c32cf55b635baa0d49bd
-Initialize a node to create the necessary configuration files
 
-seid init <name_moniker> --chain-id atlantic-1
+###Initialize a node to create the necessary configuration files
+`seid init <name_moniker> --chain-id atlantic-1`
+
 Download Genesis
+`wget -O $HOME/.sei/config/genesis.json "https://raw.githubusercontent.com/sei-protocol/testnet/master/sei-incentivized-testnet/genesis.json"`
 
-wget -O $HOME/.sei/config/genesis.json "https://raw.githubusercontent.com/sei-protocol/testnet/master/sei-incentivized-testnet/genesis.json"
 Download the addrbook
-
 wget -O $HOME/.sei/config/addrbook.json "https://raw.githubusercontent.com/sei-protocol/testnet/master/sei-incentivized-testnet/addrbook.json"
 additional setup from the team
 
