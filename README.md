@@ -19,11 +19,14 @@ The form after the assignment: https://docs.google.com/forms/d/1qxpIL-ATe1HMX87w
 
 ## Set up your SEI full node
 
-###Updating repositories
-`sudo apt update && sudo apt upgrade -y`
+### Updating repositories
+```
+sudo apt update && sudo apt upgrade -y
+```
 ### Installing the necessary utilities
+```
 sudo apt install curl build-essential git wget jq make gcc tmux htop nvme-cli pkg-config libssl-dev libleveldb-dev tar clang bsdmainutils ncdu unzip libleveldb-dev -y
-
+```
 ### Setting up Go WITH ONE COMMAND
 ```
 ver="1.18.1" && \ 
@@ -41,19 +44,24 @@ git clone https://github.com/sei-protocol/sei-chain.git && cd sei-chain
 git checkout 1.0.6beta
 make install
 ```
-`seid version --long | head`
-### version 1.0.6beta 
-### commit: e3958ff9cc3fa00a12b0c32cf55b635baa0d49bd
+```
+seid version --long | head
+```
+#### version 1.0.6beta 
+#### commit: e3958ff9cc3fa00a12b0c32cf55b635baa0d49bd
 
 ### Initialize a node to create the necessary configuration files
 `seid init <name_moniker> --chain-id atlantic-1`
 
 ### Download Genesis
-`wget -O $HOME/.sei/config/genesis.json "https://raw.githubusercontent.com/sei-protocol/testnet/master/sei-incentivized-testnet/genesis.json"`
+```
+wget -O $HOME/.sei/config/genesis.json "https://raw.githubusercontent.com/sei-protocol/testnet/master/sei-incentivized-testnet/genesis.json"
+```
 
 ### Download the addrbook
-`wget -O $HOME/.sei/config/addrbook.json "https://raw.githubusercontent.com/sei-protocol/testnet/master/sei-incentivized-testnet/addrbook.json"`
-
+```
+wget -O $HOME/.sei/config/addrbook.json "https://raw.githubusercontent.com/sei-protocol/testnet/master/sei-incentivized-testnet/addrbook.json"
+```
 ### additional setup from the team
 ```
 wget -qO optimize-configs.sh https://raw.githubusercontent.com/sei-protocol/testnet/main/sei-testnet-2/optimize-configs.sh
@@ -88,13 +96,15 @@ LimitNOFILE=65535
 WantedBy=multi-user.target 
 EOF
 ```
+```
 sudo systemctl daemon-reload && \ 
 sudo systemctl enable seid && \ 
 sudo systemctl restart seid && sudo journalctl -u seid -f -o cat
-
+```
 ### Waiting for synchronization:
-`seid status 2>&1 | jq .SyncInfo`
-
+```
+seid status 2>&1 | jq .SyncInfo
+```
 ### Create or restore a wallet and save the output:
 # create a wallet
 `seid keys add <name_wallet>`
@@ -119,24 +129,30 @@ seid tx staking create-validator \
 
 ###To check your wallet balance:
 
-`seid query bank balances $SEI_WALLET_ADDRESS`
+```
+seid query bank balances $SEI_WALLET_ADDRESS
+```
 ### Don't forget to save priv_validator_key.json !!!
 ### After installation
 
 ### After completing the installation, please load the variables into the system
 
-`source $HOME/.bash_profile`
-
+```
+source $HOME/.bash_profile
+``
 Then you must make sure that your validator synchronizes the blocks. You can use the command below to check the synchronization status
-
+```
 seid status 2>&1 | jq .SyncInfo
-Save Wallet Information
+```
+### Save Wallet Information
+```
 SEI_WALLET_ADDRESS=$(seid keys show $WALLET -a)
 SEI_VALOPER_ADDRESS=$(seid keys show $WALLET --bech val -a)
 echo 'export SEI_WALLET_ADDRESS='${SEI_WALLET_ADDRESS} >> $HOME/.bash_profile
 echo 'export SEI_VALOPER_ADDRESS='${SEI_VALOPER_ADDRESS} >> $HOME/.bash_profile
 source $HOME/.bash_profile
-To top up your wallet, go to the server Sei discord and go to the channel #atlantic-1-faucet
+```
+### To top up your wallet, go to the server Sei discord and go to the channel #atlantic-1-faucet
 
 If your wallet shows no balance, your node is probably still syncing. Please wait until it finishes syncing and then continue
 Useful Commands
