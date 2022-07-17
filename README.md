@@ -20,13 +20,12 @@ The form after the assignment: https://docs.google.com/forms/d/1qxpIL-ATe1HMX87w
 Set up your SEI full node
 
 Updating repositories
-
-```sudo apt update && sudo apt upgrade -y```
+`sudo apt update && sudo apt upgrade -y`
 Installing the necessary utilities
-
 sudo apt install curl build-essential git wget jq make gcc tmux htop nvme-cli pkg-config libssl-dev libleveldb-dev tar clang bsdmainutils ncdu unzip libleveldb-dev -y
-Setting up Go WITH ONE COMMAND
 
+Setting up Go WITH ONE COMMAND
+```
 ver="1.18.1" && \ 
 wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz" && \ 
 sudo rm -rf /usr/local/go && \ 
@@ -35,12 +34,13 @@ rm "go$ver.linux-amd64.tar.gz" && \
 echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile && \ 
 source $HOME/.bash_profile && \ 
 go version
+```
 Installing the binary
-
+```
 git clone https://github.com/sei-protocol/sei-chain.git && cd sei-chain
 git checkout 1.0.6beta
 make install
-
+```
 seid version --long | head 
 ### version 1.0.6beta 
 ### commit: e3958ff9cc3fa00a12b0c32cf55b635baa0d49bd
