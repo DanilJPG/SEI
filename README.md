@@ -21,7 +21,7 @@ Set up your SEI full node
 
 Updating repositories
 
-sudo apt update && sudo apt upgrade -y
+`sudo apt update && sudo apt upgrade -y`
 Installing the necessary utilities
 
 sudo apt install curl build-essential git wget jq make gcc tmux htop nvme-cli pkg-config libssl-dev libleveldb-dev tar clang bsdmainutils ncdu unzip libleveldb-dev -y
