@@ -4,18 +4,18 @@ Official documentation: https://docs.seinetwork.io/nodes-and-validators/seinami-
 Chain explorer: https://sei.explorers.guru/
 
 ## Minimum Hardware Requirements
-3x CPUs; the faster clock speed the better
-4GB RAM
-80GB Disk
-Permanent Internet connection (traffic will be minimal during testnet; 10Mbps will be plenty - for production at least 100Mbps is expected)
++3x CPUs; the faster clock speed the better
++4GB RAM
++80GB Disk
++Permanent Internet connection (traffic will be minimal during testnet; 10Mbps will be plenty - for production at least 100Mbps is expected)
 ## Recommended Hardware Requirements
-4x CPUs; the faster clock speed the better
-8GB RAM
-512GB of storage (SSD or NVME)
-Permanent Internet connection (traffic will be minimal during testnet; 10Mbps will be plenty - for production at least 100Mbps is expected)
-Filling out the first form after installing the validator: https://docs.google.com/forms/d/e/1FAIpQLSfD-FWT3VrxtYAAmUiwwX5Zbw3mzkZoT6pV0ZAXYqu1yUNtEw/viewform
++4x CPUs; the faster clock speed the better
++8GB RAM
++512GB of storage (SSD or NVME)
++Permanent Internet connection (traffic will be minimal during testnet; 10Mbps will be plenty - for production at least 100Mbps is expected)
++Filling out the first form after installing the validator: https://docs.google.com/forms/d/e/1FAIpQLSfD-FWT3VrxtYAAmUiwwX5Zbw3mzkZoT6pV0ZAXYqu1yUNtEw/viewform
 
-The form after the assignment: https://docs.google.com/forms/d/1qxpIL-ATe1HMX87w1P7BjMqpjXExlKyo1_btEJi00JM/
+### The form after the assignment: https://docs.google.com/forms/d/1qxpIL-ATe1HMX87w1P7BjMqpjXExlKyo1_btEJi00JM/
 
 ## Set up your SEI full node
 
@@ -51,7 +51,8 @@ seid version --long | head
 #### commit: e3958ff9cc3fa00a12b0c32cf55b635baa0d49bd
 
 ### Initialize a node to create the necessary configuration files
-`seid init <name_moniker> --chain-id atlantic-1`
+```seid init <name_moniker> --chain-id atlantic-1
+```
 
 ### Download Genesis
 ```
@@ -106,9 +107,9 @@ sudo systemctl restart seid && sudo journalctl -u seid -f -o cat
 seid status 2>&1 | jq .SyncInfo
 ```
 ### Create or restore a wallet and save the output:
-# create a wallet
+### create a wallet
 `seid keys add <name_wallet>`
-# regenerate the wallet (insert seed after the command)
+### regenerate the wallet (insert seed after the command)
 `seid keys add <name_wallet> --recover`
 ## Don't forget to save seed !!!
 ### Creating a validator
@@ -124,10 +125,10 @@ seid tx staking create-validator \
 --moniker "<name_moniker>" \ 
 --from <name_wallet> \ --fees 5550usei
 ```
-###Create a validator
-####Before creating a validator, please make sure you have at least 1 sei (1 sei equals 1000000 usei) and your node is synchronized
+### Create a validator
+#### Before creating a validator, please make sure you have at least 1 sei (1 sei equals 1000000 usei) and your node is synchronized
 
-###To check your wallet balance:
+### To check your wallet balance:
 
 ```
 seid query bank balances $SEI_WALLET_ADDRESS
@@ -154,8 +155,8 @@ source $HOME/.bash_profile
 ```
 ### To top up your wallet, go to the server Sei discord and go to the channel #atlantic-1-faucet
 
-If your wallet shows no balance, your node is probably still syncing. Please wait until it finishes syncing and then continue
-Useful Commands
+### If your wallet shows no balance, your node is probably still syncing. Please wait until it finishes syncing and then continue
+## Useful Commands
 
 Service management
 Checking logs
