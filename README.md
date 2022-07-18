@@ -3,19 +3,19 @@ Official documentation: https://docs.seinetwork.io/nodes-and-validators/seinami-
 
 Chain explorer: https://sei.explorers.guru/
 
-## Minimum Hardware Requirements
-+3x CPUs; the faster clock speed the better
-+4GB RAM
-+80GB Disk
-+Permanent Internet connection (traffic will be minimal during testnet; 10Mbps will be plenty - for production at least 100Mbps is expected)
-## Recommended Hardware Requirements
-+4x CPUs; the faster clock speed the better
-+8GB RAM
-+512GB of storage (SSD or NVME)
-+Permanent Internet connection (traffic will be minimal during testnet; 10Mbps will be plenty - for production at least 100Mbps is expected)
-+Filling out the first form after installing the validator: https://docs.google.com/forms/d/e/1FAIpQLSfD-FWT3VrxtYAAmUiwwX5Zbw3mzkZoT6pV0ZAXYqu1yUNtEw/viewform
+### Minimum Hardware Requirements
++ 3x CPUs; the faster clock speed the better
++ 4GB RAM
++ 80GB Disk
++ Permanent Internet connection (traffic will be minimal during testnet; 10Mbps will be plenty - for production at least 100Mbps is expected)
+### Recommended Hardware Requirements
++ 4x CPUs; the faster clock speed the better
++ 8GB RAM
++ 512GB of storage (SSD or NVME)
++ Permanent Internet connection (traffic will be minimal during testnet; 10Mbps will be plenty - for production at least 100Mbps is expected)
++ Filling out the first form after installing the validator: https://docs.google.com/forms/d/e/1FAIpQLSfD-FWT3VrxtYAAmUiwwX5Zbw3mzkZoT6pV0ZAXYqu1yUNtEw/viewform
 
-### The form after the assignment: https://docs.google.com/forms/d/1qxpIL-ATe1HMX87w1P7BjMqpjXExlKyo1_btEJi00JM/
+#### The form after the assignment: https://docs.google.com/forms/d/1qxpIL-ATe1HMX87w1P7BjMqpjXExlKyo1_btEJi00JM/
 
 ## Set up your SEI full node
 
@@ -141,7 +141,7 @@ seid query bank balances $SEI_WALLET_ADDRESS
 
 ```
 source $HOME/.bash_profile
-``
+```
 Then you must make sure that your validator synchronizes the blocks. You can use the command below to check the synchronization status
 ```
 seid status 2>&1 | jq .SyncInfo
@@ -159,47 +159,49 @@ source $HOME/.bash_profile
 ### If your wallet shows no balance, your node is probably still syncing. Please wait until it finishes syncing and then continue
 ## Useful Commands
 
-Service management
-Checking logs
-
+### Service management
+#### Checking logs
+```
 journalctl -fu seid -o cat
-Start the service
-
+```
+### Start the service
+```
 sudo systemctl start seid
-
-Stop the service
-
+```
+### Stop the service
+```
 sudo systemctl stop seid
-
-Restart the service
-
+```
+### Restart the service
+```
 sudo systemctl restart seid
-To add a logo to mintscan:
-
-https://github.com/cosmostation/cosmostation_token_resource fork
-in the folder Moniker find the name of the project
-via add file/upload file add your avatar. the file name must be valoper.png . and only png
+```
+### To add a logo to mintscan:
++ https://github.com/cosmostation/cosmostation_token_resource fork
++ in the folder Moniker find the name of the project
++ via add file/upload file add your avatar. the file name must be valoper.png . and only png
 PR
-# collect commissions + rewards
-seid tx distribution withdraw-rewards <valoper_address> --from <name_wallet> --fees 5555usei --commission -y
-#delegate more to the steak (this is how 1 coin is sent)
-seid tx staking delegate <valoper_address> 1000000usei --from <name_wallet> --fees 5555usei -y
-# redeleting to another validator
-seid tx staking redelegate <src-validator-addr> <dst-validator-addr> 1000000usei --from <name_wallet> --fees 5555usei -y
-# unbond 
-seid tx staking unbond <addr_valoper> 1000000usei --from <name_wallet> --fees 5555usei -y
-# send coins to another address
-seid tx bank send <name_wallet> <address> 1000000usei --fees 5555usei -y
-# get out of jail
-seid tx slashing unjail --from <name_wallet> --fees 5555usei -y
+### collect commissions + rewards
+```
+seid tx distribution withdraw-rewards <valoper_address> --from <name_wallet> --fees 5555usei --commission -y```
+### delegate more to the steak(this is how 1 coin is sent)
+```seid tx staking delegate <valoper_address> 1000000usei --from <name_wallet> --fees 5555usei -y```
+### redeleting to another validator
+```seid tx staking redelegate <src-validator-addr> <dst-validator-addr> 1000000usei --from <name_wallet> --fees 5555usei -y```
+### unbond 
+```seid tx staking unbond <addr_valoper> 1000000usei --from <name_wallet> --fees 5555usei -y```
+### send coins to another address
+```seid tx bank send <name_wallet> <address> 1000000usei --fees 5555usei -y```
+### get out of jail
+```seid tx slashing unjail --from <name_wallet> --fees 5555usei -y```
 Also, if you have any questions, go to the discord and chat: https://discord.gg/brJfyazV
 
-Telegram: https://t.me/seinetwork
++ Telegram: https://t.me/seinetwork
 
-GitHub: https://github.com/sei-protocol 
++ GitHub: https://github.com/sei-protocol 
 
-Gitbook: https://docs.seinetwork.io/introduction/overview 
++Gitbook: https://docs.seinetwork.io/introduction/overview 
 
-Block Explorer: https://sei.explorers.guru/ 
++ Block Explorer: https://sei.explorers.guru/ 
 
-Medium: https://medium.com/@seinetwork
++ Medium: https://medium.com/@seinetwork
