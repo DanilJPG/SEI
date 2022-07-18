@@ -108,9 +108,10 @@ seid status 2>&1 | jq .SyncInfo
 ```
 ### Create or restore a wallet and save the output:
 ### create a wallet
-`seid keys add <name_wallet>`
+```seid keys add <name_wallet>```
+
 ### regenerate the wallet (insert seed after the command)
-`seid keys add <name_wallet> --recover`
+```seid keys add <name_wallet> --recover```
 ## Don't forget to save seed !!!
 ### Creating a validator
 ```
