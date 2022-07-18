@@ -38,12 +38,14 @@ echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile &
 source $HOME/.bash_profile && \ 
 go version
 ```
+
 ### Installing the binary
 ```
 git clone https://github.com/sei-protocol/sei-chain.git && cd sei-chain
 git checkout 1.0.6beta
 make install
 ```
+
 ```
 seid version --long | head
 ```
@@ -51,7 +53,8 @@ seid version --long | head
 #### commit: e3958ff9cc3fa00a12b0c32cf55b635baa0d49bd
 
 ### Initialize a node to create the necessary configuration files
-```seid init <name_moniker> --chain-id atlantic-1
+```
+seid init <name_moniker> --chain-id atlantic-1
 ```
 
 ### Download Genesis
@@ -63,12 +66,14 @@ wget -O $HOME/.sei/config/genesis.json "https://raw.githubusercontent.com/sei-pr
 ```
 wget -O $HOME/.sei/config/addrbook.json "https://raw.githubusercontent.com/sei-protocol/testnet/master/sei-incentivized-testnet/addrbook.json"
 ```
+
 ### additional setup from the team
 ```
 wget -qO optimize-configs.sh https://raw.githubusercontent.com/sei-protocol/testnet/main/sei-testnet-2/optimize-configs.sh
 sudo chmod +x optimize-configs.sh && ./optimize-configs.sh 
 sudo systemctl restart seid && sudo journalctl -u seid -f -o cat
 ```
+
 ### (OPTIONAL) Configure pruning with one command app.toml
 ```
 pruning="custom" && \ 
@@ -79,6 +84,7 @@ sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \"$pruning_keep_rec
 sed -i -e "s/^pruning-keep-every *=.*/pruning-keep-every = \"$pruning_keep_every\"/" $HOME/.sei/config/app.toml && \ 
 sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $HOME/.sei/config/app.toml
 ```
+
 ### Create a service file
 ```
 sudo tee /etc/systemd/system/seid.service > /dev/null <<EOF 
@@ -97,6 +103,7 @@ LimitNOFILE=65535
 WantedBy=multi-user.target 
 EOF
 ```
+
 ```
 sudo systemctl daemon-reload && \ 
 sudo systemctl enable seid && \ 
@@ -108,10 +115,14 @@ seid status 2>&1 | jq .SyncInfo
 ```
 ### Create or restore a wallet and save the output:
 ### create a wallet
-```seid keys add <name_wallet>```
+```
+seid keys add <name_wallet>
+```
 
 ### regenerate the wallet (insert seed after the command)
-```seid keys add <name_wallet> --recover```
+```
+seid keys add <name_wallet> --recover
+```
 ## Don't forget to save seed !!!
 ### Creating a validator
 ```
@@ -130,15 +141,13 @@ seid tx staking create-validator \
 #### Before creating a validator, please make sure you have at least 1 sei (1 sei equals 1000000 usei) and your node is synchronized
 
 ### To check your wallet balance:
-
 ```
 seid query bank balances $SEI_WALLET_ADDRESS
 ```
 ### Don't forget to save priv_validator_key.json !!!
+
 ### After installation
-
-### After completing the installation, please load the variables into the system
-
+#### After completing the installation, please load the variables into the system
 ```
 source $HOME/.bash_profile
 ```
@@ -146,7 +155,7 @@ Then you must make sure that your validator synchronizes the blocks. You can use
 ```
 seid status 2>&1 | jq .SyncInfo
 ```
-### Save Wallet Information
+#### Save Wallet Information
 ```
 SEI_WALLET_ADDRESS=$(seid keys show $WALLET -a)
 SEI_VALOPER_ADDRESS=$(seid keys show $WALLET --bech val -a)
@@ -154,53 +163,65 @@ echo 'export SEI_WALLET_ADDRESS='${SEI_WALLET_ADDRESS} >> $HOME/.bash_profile
 echo 'export SEI_VALOPER_ADDRESS='${SEI_VALOPER_ADDRESS} >> $HOME/.bash_profile
 source $HOME/.bash_profile
 ```
-### To top up your wallet, go to the server Sei discord and go to the channel #atlantic-1-faucet
+#### To top up your wallet, go to the server Sei discord and go to the channel #atlantic-1-faucet
 
-### If your wallet shows no balance, your node is probably still syncing. Please wait until it finishes syncing and then continue
-## Useful Commands
+#### If your wallet shows no balance, your node is probably still syncing. Please wait until it finishes syncing and then continue
+### Useful Commands
 
-### Service management
+#### Service management
 #### Checking logs
 ```
 journalctl -fu seid -o cat
 ```
-### Start the service
+#### Start the service
 ```
 sudo systemctl start seid
 ```
-### Stop the service
+#### Stop the service
 ```
 sudo systemctl stop seid
 ```
-### Restart the service
+#### Restart the service
 ```
 sudo systemctl restart seid
 ```
-### To add a logo to mintscan:
+#### To add a logo to mintscan:
 + https://github.com/cosmostation/cosmostation_token_resource fork
 + in the folder Moniker find the name of the project
 + via add file/upload file add your avatar. the file name must be valoper.png . and only png
 PR
-### collect commissions + rewards
+#### collect commissions + rewards
 ```
-seid tx distribution withdraw-rewards <valoper_address> --from <name_wallet> --fees 5555usei --commission -y```
-### delegate more to the steak(this is how 1 coin is sent)
-```seid tx staking delegate <valoper_address> 1000000usei --from <name_wallet> --fees 5555usei -y```
-### redeleting to another validator
-```seid tx staking redelegate <src-validator-addr> <dst-validator-addr> 1000000usei --from <name_wallet> --fees 5555usei -y```
-### unbond 
-```seid tx staking unbond <addr_valoper> 1000000usei --from <name_wallet> --fees 5555usei -y```
-### send coins to another address
-```seid tx bank send <name_wallet> <address> 1000000usei --fees 5555usei -y```
-### get out of jail
-```seid tx slashing unjail --from <name_wallet> --fees 5555usei -y```
-Also, if you have any questions, go to the discord and chat: https://discord.gg/brJfyazV
+seid tx distribution withdraw-rewards <valoper_address> --from <name_wallet> --fees 5555usei --commission -y
+```
+#### delegate more to the steak(this is how 1 coin is sent)
+```
+seid tx staking delegate <valoper_address> 1000000usei --from <name_wallet> --fees 5555usei -y
+```
+#### redeleting to another validator
+```
+seid tx staking redelegate <src-validator-addr> <dst-validator-addr> 1000000usei --from <name_wallet> --fees 5555usei -y
+```
+#### unbond 
+```
+seid tx staking unbond <addr_valoper> 1000000usei --from <name_wallet> --fees 5555usei -y
+```
+#### send coins to another address
+```
+seid tx bank send <name_wallet> <address> 1000000usei --fees 5555usei -y
+```
+#### get out of jail
+```
+seid tx slashing unjail --from <name_wallet> --fees 5555usei -y
+```
+
++ Also, if you have any questions, go to the discord and chat: https://discord.gg/brJfyazV
 
 + Telegram: https://t.me/seinetwork
 
 + GitHub: https://github.com/sei-protocol 
 
-+Gitbook: https://docs.seinetwork.io/introduction/overview 
++ Gitbook: https://docs.seinetwork.io/introduction/overview 
 
 + Block Explorer: https://sei.explorers.guru/ 
 
